@@ -1,0 +1,42 @@
+{
+  "name": "movielistnext",
+  "version": "1.0.0",
+  "description": "movielist with next",
+  "main": "server/index.js",
+  "scripts": {
+    "dev": "node server/index.js",
+    "build": "next build",
+    "start": "NODE_ENV=production node server/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/connectblocks/movieListNext.git"
+  },
+  "keywords": [
+    "movielist",
+    "with",
+    "next"
+  ],
+  "author": "michael shin <io.michaelshin@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/connectblocks/movieListNext/issues"
+  },
+  "homepage": "https://github.com/connectblocks/movieListNext#readme",
+  "dependencies": {
+    "@material-ui/core": "3.3.2",
+    "@material-ui/icons": "3.0.1",
+    "axios": "0.18.0",
+    "babel-plugin-styled-components": "1.8.0",
+    "body-parser": "1.18.3",
+    "classnames": "2.2.6",
+    "d3": "5.7.0",
+    "express": "4.16.4",
+    "isomorphic-unfetch": "3.0.0",
+    "mongoose": "5.3.9",
+    "next": "7.0.2",
+    "prop-types": "15.6.2",
+    "react": "16.6.0",
+    "react-dom": "16.6.0"
+  }
+}
