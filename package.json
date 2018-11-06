@@ -38,5 +38,6 @@
     "prop-types": "15.6.2",
     "react": "16.6.0",
     "react-dom": "16.6.0"
-  }
+  },
+  "devDependencies": {}
 }

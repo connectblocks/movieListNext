@@ -1,3 +1,4 @@
+
 import React, { Component} from 'react';
 import axios from 'axios';
 import MovieList from '../components/MovieList';
@@ -9,14 +10,13 @@ class Index extends Component {
     super();
     this.state = {
       movieTitle: "",
-      totalResult: 0,
+      totalResult: "",
       apiMovieList: [],
       ownMovieList: [],
     }
   }
   
   handleSearchSubmit = (event) => {
-    console.log(event.keyCode)
     event.preventDefault();
     if(event.keyCode === 13 || !event.keyCode) {
       if(this.state.movieTitle === '') {
@@ -66,11 +66,21 @@ class Index extends Component {
             <Button variant="contained" color="primary" onClick={this.handleSearchSubmit}>Search</Button>
           </div>
           <div>
-          <MovieList apiMovieList={this.state.apiMovieList} ownMovieList={this.state.ownMovieList}/>
+          { 
+            this.state.totalResult === 0 
+            ? <div className="noResult">No Result</div>
+            :<MovieList apiMovieList={this.state.apiMovieList} ownMovieList={this.state.ownMovieList}/>
+          }
           </div>
         </div>
         <div className='footer'>Total Number of Search Results: {numberWithCommas}</div>
         <style jsx>{`
+          * {
+            font-family: Sans-serif
+          }
+          h2 {
+            color: #482880
+          }
           .footer {
             position: fixed;
             left: 0;
@@ -85,7 +95,16 @@ class Index extends Component {
             display: inline-block
           }
           .inputSection {
-            width: 800px
+            width: 800px;
+            margin-bottom: 20px;
+          }
+          .noResult {
+            margin: 5px;
+            padding: 10px;
+            border-style: none;
+            border-radius: 5px;
+            color: white;
+            background-color: #ab003c
           }
         `}
         </style>

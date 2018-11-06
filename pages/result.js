@@ -60,35 +60,56 @@ class Result extends Component {
     return (
       <div className="listDetailView">
         <h2>{this.props.movie.title}</h2>
-        <div><b>Release Date: </b>{this.props.movie.release_date}</div>
-        <div><b>Popularity: </b>{this.props.movie.popularity}</div>
-        <div>
-          <b>Overview: </b>
-          <div className="details">{this.props.movie.overview}</div>
+        <div className="container">
+          <div className='viewLeft'>
+            <div><b>Release Date: </b>{this.props.movie.release_date}</div>
+            <div><b>Popularity: </b>{this.props.movie.popularity}</div>
+            <div>
+              <b>Overview: </b>
+              <div className="details">{this.props.movie.overview}</div>
+            </div>
+            <div>
+              <b>Production Companies: </b>
+              <div className="details">{this.props.movie.production_companies && this.props.movie.production_companies.map(el => <li key={el.id}>{el.name}</li>)}</div>
+            </div>
+          </div> 
+          <div>
+          { 
+            this.props.movie.budget && this.props.movie.revenue 
+            ? (
+                <div>
+                  <b>Budget and Revenue (in US Dollar)</b>
+                  <div id='chart'></div>
+                </div>
+              )
+            : null
+          }
+          </div>
         </div>
-        <div>
-          <b>Production Companies: </b>
-          <div className="details">{this.props.movie.production_companies && this.props.movie.production_companies.map(el => <li key={el.id}>{el.name}</li>)}</div>
-        </div> 
-        { 
-          this.props.movie.budget && this.props.movie.revenue 
-          ? (
-              <div>
-                <b>Budget and Revenue (in US Dollar)</b>
-                <div id='chart'></div>
-              </div>
-            )
-          : null
-        }
         <style jsx>{`
+          * {
+            font-family: Sans-serif
+          }
+          h2 {
+            color: #482880
+          }
           div {
             padding: 5px;
+          }
+          .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            overflow:hidden;
+          }
+          .view {
+            min-width: 500px;
           }
           .listDetailView {
             margin: 5px;
             padding: 10px;
-            border-style: none;
+            border: 1px solid #482880;
             border-radius: 5px;
+            min-width: 1060px;
             background-color: rgb(255, 248, 235)
           }
           .details {
@@ -100,6 +121,24 @@ class Result extends Component {
             border-radius: 5px;
             width: 500px;
             margin: 10px;
+          }
+
+          @media (max-width: 900px) {
+            .container {
+              display: grid;
+              grid-template-columns: 1fr;
+              overflow:hidden;
+
+            }
+
+            .listDetailView {
+              margin: 5px;
+              padding: 10px;
+              border: 1px solid #482880;
+              border-radius: 5px;
+              min-width: 500px;
+              background-color: rgb(255, 248, 235)
+            }
           }
         `}
         </style>
