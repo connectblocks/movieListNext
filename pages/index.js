@@ -1,6 +1,7 @@
 import React, { Component} from 'react';
 import axios from 'axios';
 import MovieList from '../components/MovieList';
+import { Paper, TextField, Button } from '@material-ui/core/';
 import CONFIG from '../config.json';
 
 class Index extends Component {
@@ -15,8 +16,9 @@ class Index extends Component {
   }
   
   handleSearchSubmit = (event) => {
+    console.log(event.keyCode)
     event.preventDefault();
-    if(event.keyCode === 13) {
+    if(event.keyCode === 13 || !event.keyCode) {
       if(this.state.movieTitle === '') {
         alert(`please enter the movie you want to search`);
       } else {
@@ -49,15 +51,20 @@ class Index extends Component {
       <div>
         <div>
           <h2>Your Personal IMDb</h2>
-          <input
-            type="text"
-            label="Enter The Movie Title and Press Enter"
-            placeholder="Find Movie"  
-            margin="normal"
-            value={this.state.movieTitle}
-            onChange={(event) => (this.setState({movieTitle: event.target.value}))}
-            onKeyUp={this.handleSearchSubmit}
-          />
+          <div className="inputSection">
+            <TextField
+              type="text"
+              fullWidth
+              label="Enter The Movie Title"
+              placeholder="Find Movie"  
+              margin="normal"
+              ref={this.textInput} 
+              value={this.state.movieTitle}
+              onChange={(event) => (this.setState({movieTitle: event.target.value}))}
+              onKeyUp={this.handleSearchSubmit}
+            />
+            <Button variant="contained" color="primary" onClick={this.handleSearchSubmit}>Search</Button>
+          </div>
           <div>
           <MovieList apiMovieList={this.state.apiMovieList} ownMovieList={this.state.ownMovieList}/>
           </div>
@@ -76,6 +83,9 @@ class Index extends Component {
             font-weight: bold;
             padding: 5px;
             display: inline-block
+          }
+          .inputSection {
+            width: 800px
           }
         `}
         </style>
