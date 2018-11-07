@@ -32,14 +32,19 @@ class MovieListEntry extends Component {
     return (
       <Link as={`/result/${this.props.movie.id}`} href={`/result?id=${this.props.movie.id}`} >
         <div className='listEntryView' >
-        <h3>{this.props.movie.title}</h3>
-        <div className='listEntryItem'><b>Release Date: </b>{this.props.movie.release_date}</div>
+          <div className='container'>
+            <div className='title'>{this.props.movie.title}</div>
+            <div className='listEntryItem'><b>Release Date: </b>{this.props.movie.release_date}</div>
+          </div>
         <div className='listEntryItem'>
-          <span><b>Own the movie: </b></span>    
+          <span><b>Own it?: </b></span>    
           <button onClick={this.handleOwnClick} value={this.state.own} style={{color: 'White', backgroundColor: inStyle, borderRadius: '5px', borderStyle: 'none'}}>{this.state.own}</button>
         </div>
-        <div className='listEntryItem'><b>Overview</b>
-          <div className='overviewDetails'>{this.props.movie.overview}</div>
+          <div className='overviewDetails'>
+          <div className='listEntryItem'>
+            <b>Overview:</b>
+            <div>{this.props.movie.overview}</div>
+          </div>
         </div>
         <style jsx>{`
           .listEntryView {
@@ -58,7 +63,19 @@ class MovieListEntry extends Component {
           }
           .overviewDetails {
             font-size: 0.8em;
-            padding: 3px;
+            padding: 10px;
+            margin-top: 5px;
+            background-color: white;
+            border-radius: 5px
+          }
+          .container {
+            display: grid;
+            grid-template-columns: 2fr 1fr
+          }
+          .title {
+            font-weight: bold;
+            color: #482880;
+
           }
         `}
         </style>

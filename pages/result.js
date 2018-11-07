@@ -73,17 +73,15 @@ class Result extends Component {
               <div className="details">{this.props.movie.production_companies && this.props.movie.production_companies.map(el => <li key={el.id}>{el.name}</li>)}</div>
             </div>
           </div> 
-          <div>
-          { 
-            this.props.movie.budget && this.props.movie.revenue 
-            ? (
-                <div>
-                  <b>Budget and Revenue (in US Dollar)</b>
-                  <div id='chart'></div>
-                </div>
-              )
-            : null
-          }
+          <div className="financial"> 
+            <div>
+              <b>Budget and Revenue (in US Dollar)</b>
+              { 
+                this.props.movie.budget && this.props.movie.revenue 
+                ? <div id='chart'></div>
+                : <div className="noResult">No Results</div>
+              }
+            </div>  
           </div>
         </div>
         <style jsx>{`
@@ -98,7 +96,7 @@ class Result extends Component {
           }
           .container {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr 550px;
             overflow:hidden;
           }
           .view {
@@ -116,28 +114,43 @@ class Result extends Component {
             font-size: 0.8em;
             padding: 3px;
           }
+          .financial {
+            border: 1px dotted #ab003c;
+            border-radius: 5px;
+            width: 540px;
+            background: #ffa199;
+            position: relative
+          }
           #chart {
             background: white;
             border-radius: 5px;
             width: 500px;
             margin: 10px;
           }
-
+          .noResult {
+            color: white;
+            font-weight: bold;
+            text-align: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+          }
           @media (max-width: 900px) {
             .container {
-              display: grid;
               grid-template-columns: 1fr;
-              overflow:hidden;
-
             }
-
+            .financial {
+              margin: 10px;
+            }
             .listDetailView {
-              margin: 5px;
-              padding: 10px;
-              border: 1px solid #482880;
-              border-radius: 5px;
               min-width: 500px;
-              background-color: rgb(255, 248, 235)
+            }
+            .noResult {
+              position: absolute;
+              top: 50%;
+              left: 80%;
             }
           }
         `}

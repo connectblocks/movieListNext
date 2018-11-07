@@ -1,8 +1,6 @@
-
 import React, { Component} from 'react';
 import axios from 'axios';
 import MovieList from '../components/MovieList';
-import { Paper, TextField, Button } from '@material-ui/core/';
 import CONFIG from '../config.json';
 
 class Index extends Component {
@@ -46,26 +44,23 @@ class Index extends Component {
   }
   
   render() {
-    const numberWithCommas = this.state.totalResult.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     return (
       <div>
         <div>
           <h2>Your Personal IMDb</h2>
           <div className="inputSection">
-            <TextField
+            <input
               type="text"
-              fullWidth
-              label="Enter The Movie Title"
-              placeholder="Find Movie"  
+              placeholder="Enter The Movie Title"  
               margin="normal"
               ref={this.textInput} 
               value={this.state.movieTitle}
               onChange={(event) => (this.setState({movieTitle: event.target.value}))}
               onKeyUp={this.handleSearchSubmit}
             />
-            <Button variant="contained" color="primary" onClick={this.handleSearchSubmit}>Search</Button>
+            <button onClick={this.handleSearchSubmit}>Search</button>
           </div>
-          <div>
+          <div className="details">
           { 
             this.state.totalResult === 0 
             ? <div className="noResult">No Result</div>
@@ -73,7 +68,7 @@ class Index extends Component {
           }
           </div>
         </div>
-        <div className='footer'>Total Number of Search Results: {numberWithCommas}</div>
+        <div className='footer'>Total Number of Search Results: {this.state.totalResult.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</div>
         <style jsx>{`
           * {
             font-family: Sans-serif
@@ -81,6 +76,32 @@ class Index extends Component {
           h2 {
             color: #482880
           }
+          input {
+            font-size: 16px;
+            width: 60%;
+            border: none;
+            border-bottom: 2px solid #482880;
+            padding: 10px
+          }
+
+          input:focus {
+            outline: none;
+            border-bottom: 3px solid #7357b9;
+            width: 60%;
+          }
+
+          button {
+            background-color: #482880;
+            color: white;
+            width: 100px;
+            height: 40px;
+            font-size: 14px;
+            font-weight: bold;
+            border: none;
+            border-radius: 3px;
+            margin-left: 5px;
+          }
+
           .footer {
             position: fixed;
             left: 0;
@@ -97,6 +118,13 @@ class Index extends Component {
           .inputSection {
             width: 800px;
             margin-bottom: 20px;
+            
+          }
+          .details {
+            border: 1px solid #757de8;;            
+            border-radius: 5px;
+            margin-bottom: 30px;
+
           }
           .noResult {
             margin: 5px;
@@ -104,8 +132,11 @@ class Index extends Component {
             border-style: none;
             border-radius: 5px;
             color: white;
-            background-color: #ab003c
+            background-color: #ab003c;
+            text-align: center;
+            font-weight: bold;
           }
+
         `}
         </style>
       </div>
