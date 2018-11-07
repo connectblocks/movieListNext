@@ -37,7 +37,7 @@ class MovieListEntry extends Component {
             <div className='listEntryItem'><b>Release Date: </b>{this.props.movie.release_date}</div>
           </div>
         <div className='listEntryItem'>
-          <span><b>Own it?: </b></span>    
+          <span>Own it?:</span>    
           <button onClick={this.handleOwnClick} value={this.state.own} style={{color: 'White', backgroundColor: inStyle, borderRadius: '5px', borderStyle: 'none'}}>{this.state.own}</button>
         </div>
           <div className='overviewDetails'>
@@ -47,12 +47,16 @@ class MovieListEntry extends Component {
           </div>
         </div>
         <style jsx>{`
+          button {
+            margin-left: 10px
+          }
           .listEntryView {
             margin: 5px;
             padding: 10px;
             border-style: none;
             border-radius: 5px;
-            background-color: rgb(255, 248, 235)
+            background-color: rgb(255, 248, 235);
+            border: 1px dotted #ab003c;
           }
           .listEntryView:hover { 
             background-color: rgb(253, 240, 216);
@@ -66,7 +70,9 @@ class MovieListEntry extends Component {
             padding: 10px;
             margin-top: 5px;
             background-color: white;
-            border-radius: 5px
+            border-radius: 5px;
+            border: 1px dotted #ab003c;
+
           }
           .container {
             display: grid;
